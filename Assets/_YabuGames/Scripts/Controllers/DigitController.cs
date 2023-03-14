@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DigitController : MonoBehaviour
+namespace _YabuGames.Scripts.Controllers
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DigitController : MonoBehaviour
     {
+        public int digitValue;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }
