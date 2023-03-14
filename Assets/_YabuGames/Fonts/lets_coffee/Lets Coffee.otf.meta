@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 75a4ef377211f40388b1daa96961bd71
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Lets Coffee
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 30a93d72c76184bcfa5af6904813faf5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
