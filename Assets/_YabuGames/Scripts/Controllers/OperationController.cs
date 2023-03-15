@@ -72,7 +72,7 @@ namespace _YabuGames.Scripts.Controllers
             var rb = parent.AddComponent<Rigidbody>();
             rb.isKinematic = true;
 
-            var grabController = parent.GetComponent<GrabController>();
+            var grabController = parent.AddComponent<GrabController>();
             grabController.startPosition = extractPosition.position;
             var collisionController = parent.GetComponent<CollisionController>();
             collisionController.isMultiplied = true;
@@ -84,6 +84,9 @@ namespace _YabuGames.Scripts.Controllers
         {
             obj.transform.DOMove(extractPosition.position, .5f).SetEase(Ease.OutBack)
                 .OnComplete(() => OpenCollider(obj,calculatedValue));
+            var grabController = obj.GetComponent<GrabController>();
+            grabController.startPosition = extractPosition.position;
+
         }
 
         private void OpenCollider(GameObject obj,int calculatedValue)
