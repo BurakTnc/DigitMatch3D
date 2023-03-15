@@ -7,7 +7,9 @@ namespace _YabuGames.Scripts.Controllers
     [RequireComponent(typeof(CollisionController))]
     public class GrabController : MonoBehaviour
     {
-        private Vector3 _offset, _startPosition;
+       [HideInInspector] public Vector3 startPosition;
+        
+        private Vector3 _offset;
         private Camera _camera;
         private CollisionController _collisionController;
 
@@ -19,14 +21,15 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Start()
         {
-            _startPosition = transform.position;
+            startPosition = transform.position;
         }
 
         private void OnMouseUp()
         {
             _collisionController.onMove = false;
             transform.DOComplete();
-            transform.DOMove(_startPosition, .5f).SetEase(Ease.OutBack);
+            transform.DORotate(new Vector3(-45, -180, 0),.3f).SetEase(Ease.OutBack);
+            transform.DOMove(startPosition, .5f).SetEase(Ease.OutBack);
             _collisionController.onMove = false;
         }
 
@@ -34,6 +37,7 @@ namespace _YabuGames.Scripts.Controllers
         {
             _collisionController.onMove = true;
             transform.DOComplete();
+            transform.DORotate(new Vector3(0, -180, 0),.3f).SetEase(Ease.OutBack);
             //transform.DOMoveY(_startPosition.y + .3f, .2f).SetEase(Ease.OutBack).SetRelative(true);
             _offset = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
         }

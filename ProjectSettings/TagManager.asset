@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - OperationBox
+  - EqualityBox
   layers:
   - Default
   - TransparentFX
