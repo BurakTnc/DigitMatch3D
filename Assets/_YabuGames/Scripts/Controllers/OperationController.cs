@@ -12,6 +12,8 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private OperationMode operationMode;
         [SerializeField] private Transform extractPosition;
         [SerializeField] private Transform calculatePosition;
+
+        private Animation _animation;
         private Animator _animator;
         private const float XOffset = .4f;
 
@@ -19,7 +21,9 @@ namespace _YabuGames.Scripts.Controllers
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _animation = GetComponent<Animation>();
         }
+        
 
         private int Calculate()
         {
@@ -47,7 +51,7 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Execute(int calculatedValue)
         {
-            _animator.enabled = true;
+            _animation.Play();
             var firstDigit = (int)calculatedValue / 10;
             var secondDigit = calculatedValue % 10;
             var parent = new GameObject();
@@ -58,7 +62,7 @@ namespace _YabuGames.Scripts.Controllers
             firstDigitObj.transform.SetLocalPositionAndRotation(new Vector3(XOffset, 0, 0), Quaternion.identity);
             secondDigitObj.transform.SetLocalPositionAndRotation(new Vector3(-XOffset, 0, 0), Quaternion.identity);
             parent.transform.position = calculatePosition.position;
-            parent.transform.DOScale(Vector3.one * 1.2f, .3f).SetLoops(2,LoopType.Yoyo)
+            parent.transform.DOScale(Vector3.one * 1.2f, .2f).SetLoops(2,LoopType.Yoyo)
                 .OnComplete(() => ExitBox(parent, calculatedValue));
             parent.name = calculatedValue.ToString();
 
@@ -82,7 +86,7 @@ namespace _YabuGames.Scripts.Controllers
 
         private void ExitBox(GameObject obj, int calculatedValue)
         {
-            obj.transform.DOMove(extractPosition.position, .5f).SetEase(Ease.OutBack)
+            obj.transform.DOMove(extractPosition.position, .4f).SetEase(Ease.OutBack)
                 .OnComplete(() => OpenCollider(obj,calculatedValue));
             var grabController = obj.GetComponent<GrabController>();
             grabController.startPosition = extractPosition.position;
@@ -91,7 +95,6 @@ namespace _YabuGames.Scripts.Controllers
 
         private void OpenCollider(GameObject obj,int calculatedValue)
         {
-            _animator.enabled = false;
             var boxCollider = obj.AddComponent<BoxCollider>();
             boxCollider.enabled = true;
             boxCollider.center = new Vector3(-.4f, .4f, 0);
@@ -101,6 +104,7 @@ namespace _YabuGames.Scripts.Controllers
         }
         public void StartCalculate()
         {
+            //_animator.enabled = false;
             Execute(Calculate());
         }
     }
