@@ -5,21 +5,17 @@ namespace _YabuGames.Scripts.Controllers
 {
     public class CollisionController : MonoBehaviour
     {
-        private void OnCollisionEnter(Collision collision)
+        public bool onMove;
+        
+        private void OnTriggerStay(Collider other)
         {
-            switch (collision.transform.tag)
+            if (other.gameObject.CompareTag("OperationBox"))
             {
-                default:
-                    break;
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            switch (other.tag)
-            {
-                default:
-                    break;
+                if (onMove) 
+                    return;
+                var holder = other.gameObject.GetComponent<DigitHolder>();
+                holder.PlaceTheDigit(gameObject);
+                onMove = true;
             }
         }
     }

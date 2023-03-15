@@ -473,6 +473,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneID: 0
   levelID: 0
+--- !u!1 &518404885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4033648187188815301, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
+  m_PrefabInstance: {fileID: 4033648186908722133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &518404886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518404885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff24f9cd059945289488af7741825b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstValue: 0
+  secondValue: 0
+  operationMode: 0
+  extractPosition: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1163,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1280
+  m_Name: pb_Mesh-2118
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1598,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4033648187188815298, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.39
+      value: -3.24
       objectReference: {fileID: 0}
     - target: {fileID: 4033648187188815298, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1606,7 +1627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4033648187188815298, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.38
+      value: 15.75
       objectReference: {fileID: 0}
     - target: {fileID: 4033648187188815298, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1642,7 +1663,11 @@ PrefabInstance:
       objectReference: {fileID: 2120058371}
     - target: {fileID: 4033648187188815299, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_VersionIndex
-      value: 3179
+      value: 3350
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033648187188815300, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033648187188815301, guid: 2ee6d2c55f5524657b4d75a7000dbd93, type: 3}
       propertyPath: m_Name
