@@ -1577,7 +1577,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  loopType: 0
+  loopType: 1
   loops: 1
   id: 
   isRelative: 0
@@ -1641,6 +1641,7 @@ GameObject:
   - component: {fileID: 24594362878917372}
   - component: {fileID: 24594362878917369}
   - component: {fileID: 24594362878917370}
+  - component: {fileID: 24594362878917374}
   - component: {fileID: 24594362878917371}
   m_Layer: 5
   m_Name: Image
@@ -1649,6 +1650,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &24594362878917374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24594362878917373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 40306178, guid: aa0b1eebb5db27a419fa4564bbe5c9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: 0
+  onEnableBehaviour: 1
+  onDisableBehaviour: 0
 --- !u!222 &24594363100947536
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1777,7 +1793,7 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0
-  duration: 2
+  duration: 1
   easeType: 30
   easeCurve:
     serializedVersion: 2
@@ -1869,6 +1885,7 @@ GameObject:
   - component: {fileID: 24594363100947536}
   - component: {fileID: 24594363100947537}
   - component: {fileID: 24594363100947538}
+  - component: {fileID: 24594363100947542}
   - component: {fileID: 24594363100947539}
   m_Layer: 5
   m_Name: retryButton
@@ -1877,6 +1894,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &24594363100947542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24594363100947541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 40306178, guid: aa0b1eebb5db27a419fa4564bbe5c9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: 0
+  onEnableBehaviour: 1
+  onDisableBehaviour: 0
 --- !u!222 &24594363174964490
 CanvasRenderer:
   m_ObjectHideFlags: 0
