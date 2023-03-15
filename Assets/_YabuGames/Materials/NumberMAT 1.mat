@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NumberMAT
+  m_Name: NumberMAT 1
   m_Shader: {fileID: -6465566751694194690, guid: df5bb027d94a6c44bb32b3c31ec1303f, type: 3}
   m_ValidKeywords:
   - TCP2_OUTLINE_CONST_SIZE
@@ -163,7 +163,7 @@ Material:
     - _UseSpecular: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.22730194, g: 0.8018868, b: 0.22316661, a: 1}
+    - _BaseColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _Color: {r: 0.3713245, g: 0.7924528, b: 0.22054112, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
