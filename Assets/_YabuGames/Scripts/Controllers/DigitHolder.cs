@@ -1,6 +1,7 @@
 using System;
 using _YabuGames.Scripts.Enums;
 using _YabuGames.Scripts.Managers;
+using _YabuGames.Scripts.Signals;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace _YabuGames.Scripts.Controllers
         private int _firstDigit, _secondDigit;
         private int _digitCount;
         private OperationController _operationController;
+        private Camera _cam;
 
         private void Awake()
         {
@@ -24,7 +26,7 @@ namespace _YabuGames.Scripts.Controllers
             {
                 _operationController = controller;
             }
-            
+            _cam=Camera.main;
         }
 
         public void PlaceTheDigit(GameObject digit)
@@ -60,6 +62,28 @@ namespace _YabuGames.Scripts.Controllers
             digit.transform.DORotate(new Vector3(-45, -180, 0), .4f).SetEase(Ease.OutBack);
         }
 
+        private void Win()
+        {
+            CoreGameSignals.Instance.OnLevelWin?.Invoke();
+        }
+
+        private void Lose()
+        {
+            _cam.DOShakeRotation(.5f, Vector3.one, 10, 1, true);
+            
+            var oldPosition1 = _firstObj.GetComponent<GrabController>().startPosition;
+            _firstObj.transform.DOMove(oldPosition1, .5f).SetEase(Ease.OutBack);
+            _firstObj.transform.DORotate(new Vector3(-45, -180, 0), .5f).SetEase(Ease.OutBack);
+            if (_digitCount > 1)
+            {
+                var oldPosition2 = _secondObj.GetComponent<GrabController>().startPosition;
+                _secondObj.transform.DORotate(new Vector3(-45, -180, 0), .5f).SetEase(Ease.OutBack).SetDelay(.2f);
+                _secondObj.transform.DOMove(oldPosition2, .5f).SetEase(Ease.OutBack).SetDelay(.2f);
+            }
+            
+            _digitCount = 0;
+        }
+
         private void StartCalculation()
         {
             switch (holderMode)
@@ -84,11 +108,11 @@ namespace _YabuGames.Scripts.Controllers
                         var takenValue = (_firstDigit * 10) + _secondDigit;
                         if (takenValue==LevelManager.Instance.givenValue)
                         {
-                            Debug.Log("helaal");
+                            Win();
                         }
                         else
                         {
-                            Debug.Log("yarrag");
+                            Lose();
                         }
                     }
                     else
@@ -98,11 +122,11 @@ namespace _YabuGames.Scripts.Controllers
                         var takenValue = _firstDigit;
                         if (takenValue==LevelManager.Instance.givenValue)
                         {
-                            Debug.Log("helaal");
+                            Win();
                         }
                         else
                         {
-                            Debug.Log("yarrag");
+                            Lose();
                         }
                     }
                     break;

@@ -16,7 +16,6 @@ namespace _YabuGames.Scripts.Controllers
                     return;
                 if(isMultiplied)
                     return;
-                Debug.Log("nono");
                 var holder = other.gameObject.GetComponent<DigitHolder>();
                 holder.PlaceTheDigit(gameObject);
                 onMove = true;

@@ -48,14 +48,14 @@ namespace _YabuGames.Scripts.Managers
         #region Subscribtions
         private void Subscribe()
                 {
-                    CoreGameSignals.Instance.OnLevelWin += LevelWin;
+                    CoreGameSignals.Instance.OnGameWin += LevelWin;
                     CoreGameSignals.Instance.OnLevelFail += LevelLose;
                     CoreGameSignals.Instance.OnGameStart += OnGameStart;
                 }
         
                 private void UnSubscribe()
                 {
-                    CoreGameSignals.Instance.OnLevelWin -= LevelWin;
+                    CoreGameSignals.Instance.OnGameWin -= LevelWin;
                     CoreGameSignals.Instance.OnLevelFail -= LevelLose;
                     CoreGameSignals.Instance.OnGameStart -= OnGameStart;
                 }
