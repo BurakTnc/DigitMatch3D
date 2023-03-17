@@ -16,6 +16,7 @@ namespace _YabuGames.Scripts.Managers
         [SerializeField] private Image[] icons = new Image[3];
         [SerializeField] private Sprite currentIcon, passedIcon, neutralIcon;
         [SerializeField] private Image progressBar;
+        [SerializeField] private GameObject retryButton;
 
 
         private void Awake()
@@ -58,7 +59,8 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnLevelFail += LevelLose;
                     CoreGameSignals.Instance.OnGameStart += OnGameStart;
                     CoreGameSignals.Instance.OnLevelWin += SetIcons;
-                    
+                    CoreGameSignals.Instance.OnMistake += Mistake;
+
                 }
         
                 private void UnSubscribe()
@@ -67,6 +69,7 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnLevelFail -= LevelLose;
                     CoreGameSignals.Instance.OnGameStart -= OnGameStart;
                     CoreGameSignals.Instance.OnLevelWin -= SetIcons;
+                    CoreGameSignals.Instance.OnMistake -= Mistake;
                 }
 
         #endregion
@@ -78,9 +81,14 @@ namespace _YabuGames.Scripts.Managers
             SetIcons();
         }
 
+        private void Mistake()
+        {
+            retryButton.SetActive(true);
+        }
         private void SetIcons()
         {
             var id = LevelManager.Instance.levelID;
+            retryButton.SetActive(false);
             switch (id)
             {
                 case 0:

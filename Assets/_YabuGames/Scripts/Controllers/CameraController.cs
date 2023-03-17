@@ -25,6 +25,7 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Win()
         {
+            _confetti.SetActive(false);
             _confetti.SetActive(true);
         }
     }

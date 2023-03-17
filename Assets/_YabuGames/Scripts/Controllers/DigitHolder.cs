@@ -33,11 +33,12 @@ namespace _YabuGames.Scripts.Controllers
         {
             if (_digitCount<1)
             {
+                var desiredPos = firstDigitPlace.position + Vector3.up;
                 _firstObj = digit;
                 _firstDigit = digit.GetComponent<DigitController>().digitValue;
                 digit.transform.DOKill();
                 digit.transform.DORotate(new Vector3(0, -180, 0), .5f).SetEase(Ease.OutBack);
-                digit.transform.DOMove(firstDigitPlace.position + Vector3.up, .3f)
+                digit.transform.DOMove(desiredPos, .3f)
                     .OnComplete(() => LastMove(digit, firstDigitPlace));
                 _digitCount++;
             }
@@ -56,7 +57,13 @@ namespace _YabuGames.Scripts.Controllers
 
         private void LastMove(GameObject digit,Transform place)
         {
-            digit.transform.DOMove(place.position, .5f).SetEase(Ease.OutBack).OnComplete(StartCalculation);
+            var collisionController = digit.GetComponent<CollisionController>();
+            var desiredPos = place.position;
+            if (collisionController.isMultiplied)
+            {
+                desiredPos.x += .5f;
+            }
+            digit.transform.DOMove(desiredPos, .5f).SetEase(Ease.OutBack).OnComplete(StartCalculation);
             if(holderMode==DigitHolderMode.OperationBox) 
                 return;
             digit.transform.DORotate(new Vector3(-45, -180, 0), .4f).SetEase(Ease.OutBack);
@@ -64,13 +71,14 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Win()
         {
+            _digitCount = 0;
             CoreGameSignals.Instance.OnLevelWin?.Invoke();
         }
 
         private void Lose()
         {
             _cam.DOShakeRotation(.5f, Vector3.one, 10, 1, true);
-            
+            CoreGameSignals.Instance.OnMistake?.Invoke();
             var oldPosition1 = _firstObj.GetComponent<GrabController>().startPosition;
             _firstObj.transform.DOMove(oldPosition1, .5f).SetEase(Ease.OutBack);
             _firstObj.transform.DORotate(new Vector3(-45, -180, 0), .5f).SetEase(Ease.OutBack);

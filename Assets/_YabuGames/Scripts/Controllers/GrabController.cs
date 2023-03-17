@@ -17,11 +17,12 @@ namespace _YabuGames.Scripts.Controllers
         {
             _camera=Camera.main;
             _collisionController = GetComponent<CollisionController>();
+            startPosition = transform.position;
         }
 
         private void Start()
         {
-            startPosition = transform.position;
+            
         }
 
         private void OnMouseUp()

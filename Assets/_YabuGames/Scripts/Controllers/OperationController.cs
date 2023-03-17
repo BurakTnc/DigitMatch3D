@@ -1,5 +1,6 @@
 using System;
 using _YabuGames.Scripts.Enums;
+using _YabuGames.Scripts.Managers;
 using DG.Tweening;
 using UnityEngine;
 
@@ -58,7 +59,7 @@ namespace _YabuGames.Scripts.Controllers
             var firstDigitObj = Instantiate(Resources.Load<GameObject>($"Spawnables/{firstDigit}"), parent.transform);
             var secondDigitObj = Instantiate(Resources.Load<GameObject>($"Spawnables/{secondDigit}"), parent.transform);
             parent.transform.rotation=Quaternion.Euler(-45,-180,0);
-            
+            parent.transform.parent = LevelManager.Instance.GetPlatform();
             firstDigitObj.transform.SetLocalPositionAndRotation(new Vector3(XOffset, 0, 0), Quaternion.identity);
             secondDigitObj.transform.SetLocalPositionAndRotation(new Vector3(-XOffset, 0, 0), Quaternion.identity);
             parent.transform.position = calculatePosition.position;

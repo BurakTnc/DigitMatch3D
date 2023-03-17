@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -103,17 +104,24 @@ namespace _YabuGames.Scripts.Managers
                 return;
             }
             levelID++;
-            //Initialize();
+            Initialize();
         }
 
         private void Initialize()
         {
-            foreach (var t in levels)
-            {
-                t.SetActive(false);
-            }
-            levels[levelID].SetActive(true);
+            // foreach (var t in levels)
+            // {
+            //     t.SetActive(false);
+            // }
 
+            var newPlatform = levels[levelID];
+            newPlatform.SetActive(true);
+            newPlatform.transform.position = new Vector3(17, -7.69f, 8.23f);
+            newPlatform.transform.DOMoveX(3.70f, 1).SetEase(Ease.OutBack).SetDelay(1.5f);
+
+            var oldPlatform = levels[levelID - 1];
+            oldPlatform.transform.DOMoveX(-14.70f, 1).SetEase(Ease.InBack).SetDelay(.5f).SetRelative(true);
+            
             if (_firstDigitObj)
             {
                 var temp1 = _firstDigitObj;
@@ -130,6 +138,10 @@ namespace _YabuGames.Scripts.Managers
         {
             PlayerPrefs.SetInt("levelID",levelID);
         }
-        
+
+        public Transform GetPlatform()
+        {
+            return levels[levelID].transform;
+        }
     }
 }

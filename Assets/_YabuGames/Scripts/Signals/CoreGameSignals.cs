@@ -15,6 +15,7 @@ namespace _YabuGames.Scripts.Signals
         public UnityAction OnSave = delegate { };
         public UnityAction<int,bool> OnSpawnCoins=delegate { };
         public UnityAction OnGameWin = delegate { };
+        public UnityAction OnMistake=delegate { };
 
         #region Singleton
         private void Awake()
