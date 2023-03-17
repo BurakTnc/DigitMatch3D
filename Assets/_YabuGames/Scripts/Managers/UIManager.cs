@@ -1,7 +1,9 @@
 using System;
 using _YabuGames.Scripts.Signals;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
 {
@@ -11,6 +13,9 @@ namespace _YabuGames.Scripts.Managers
         
         [SerializeField] private GameObject mainPanel, gamePanel, winPanel, losePanel, storePanel;
         [SerializeField] private TextMeshProUGUI[] moneyText;
+        [SerializeField] private Image[] icons = new Image[3];
+        [SerializeField] private Sprite currentIcon, passedIcon, neutralIcon;
+        [SerializeField] private Image progressBar;
 
 
         private void Awake()
@@ -43,6 +48,7 @@ namespace _YabuGames.Scripts.Managers
         private void Start()
         {
             SetMoneyTexts();
+            SetIcons();
         }
 
         #region Subscribtions
@@ -51,6 +57,8 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnGameWin += LevelWin;
                     CoreGameSignals.Instance.OnLevelFail += LevelLose;
                     CoreGameSignals.Instance.OnGameStart += OnGameStart;
+                    CoreGameSignals.Instance.OnLevelWin += SetIcons;
+                    
                 }
         
                 private void UnSubscribe()
@@ -58,6 +66,7 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnGameWin -= LevelWin;
                     CoreGameSignals.Instance.OnLevelFail -= LevelLose;
                     CoreGameSignals.Instance.OnGameStart -= OnGameStart;
+                    CoreGameSignals.Instance.OnLevelWin -= SetIcons;
                 }
 
         #endregion
@@ -66,6 +75,36 @@ namespace _YabuGames.Scripts.Managers
         {
             mainPanel.SetActive(false);
             gamePanel.SetActive(true);
+            SetIcons();
+        }
+
+        private void SetIcons()
+        {
+            var id = LevelManager.Instance.levelID;
+            switch (id)
+            {
+                case 0:
+                    icons[0].sprite = currentIcon;
+                    icons[1].sprite = neutralIcon;
+                    icons[2].sprite = neutralIcon;
+                    progressBar.fillAmount = 0;
+                    break;
+                case 1:
+                    icons[0].transform.DOScale(Vector3.one * 1.2f, .4f).SetLoops(2, LoopType.Yoyo);
+                    icons[0].sprite = passedIcon;
+                    icons[1].sprite = currentIcon;
+                    icons[2].sprite = neutralIcon;
+                    progressBar.DOFillAmount(.5f, 2f).SetEase(Ease.InSine);
+                    break;
+                case 2:
+                    icons[0].sprite = passedIcon;
+                    icons[1].transform.DOScale(Vector3.one * 1.2f, .4f).SetLoops(2, LoopType.Yoyo);
+                    icons[1].sprite = passedIcon;
+                    icons[2].sprite = currentIcon;
+                    progressBar.DOFillAmount(1f, 2f).SetEase(Ease.InSine);
+                    break;
+
+            }
         }
         private void SetMoneyTexts()
         {

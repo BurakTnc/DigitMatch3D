@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17965123, g: 0.22494312, b: 0.3064915, a: 1}
+  m_IndirectSpecularColor: {r: 0.17966287, g: 0.22495623, b: 0.30649915, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3587,11 +3587,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainPanel: {fileID: 0}
-  gamePanel: {fileID: 0}
-  winPanel: {fileID: 0}
+  gamePanel: {fileID: 24594362422800988}
+  winPanel: {fileID: 1381270125}
   losePanel: {fileID: 0}
   storePanel: {fileID: 0}
   moneyText: []
+  icons:
+  - {fileID: 653659531622377885}
+  - {fileID: 653659530980258255}
+  - {fileID: 653659529874838492}
+  currentIcon: {fileID: 21300000, guid: 719db591f18339b428572a7810768ceb, type: 3}
+  passedIcon: {fileID: 21300000, guid: e593aa48f1252b943bd98c7364e67039, type: 3}
+  neutralIcon: {fileID: 21300000, guid: 0e06b1c078c44454a85909526fc1a6e3, type: 3}
+  progressBar: {fileID: 653659531596425796}
 --- !u!222 &24594362422800985
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4627,7 +4635,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.303
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

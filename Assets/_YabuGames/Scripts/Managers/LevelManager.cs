@@ -92,7 +92,7 @@ namespace _YabuGames.Scripts.Managers
         
         private void GetValues()
         {
-            levelID = PlayerPrefs.GetInt("levelID", 1);
+            levelID = PlayerPrefs.GetInt("levelID", 0);
         }
 
         private void LevelWin()
@@ -103,7 +103,7 @@ namespace _YabuGames.Scripts.Managers
                 return;
             }
             levelID++;
-            Initialize();
+            //Initialize();
         }
 
         private void Initialize()
