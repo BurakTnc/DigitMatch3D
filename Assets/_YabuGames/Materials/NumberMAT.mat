@@ -121,7 +121,7 @@ Material:
     - _OutlinePixelSizeType: 1
     - _OutlineTextureLOD: 5
     - _OutlineTextureType: 0
-    - _OutlineWidth: 2
+    - _OutlineWidth: 3
     - _Parallax: 0.02
     - _RampBands: 4
     - _RampBandsSmoothing: 0.1
@@ -141,7 +141,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularMapType: 0
-    - _SpecularRoughness: 0.189
+    - _SpecularRoughness: 0.067
     - _SpecularToonSize: 0.001
     - _SpecularToonSmoothness: 0
     - _SpecularType: 0

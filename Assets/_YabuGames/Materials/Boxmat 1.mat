@@ -15,9 +15,10 @@ Material:
   - TCP2_RIM_LIGHTING_LIGHTMASK
   - TCP2_SHADOW_LIGHT_COLOR
   m_InvalidKeywords:
+  - TCP2_OUTLINE_CONST_SIZE
   - TCP2_UV_NORMALS_FULL
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -92,7 +93,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DirectIntensityOutline: 1
@@ -117,10 +118,10 @@ Material:
     - _OutlineLightingTypeURP: 0
     - _OutlineMaxWidth: 1
     - _OutlineMinWidth: 1
-    - _OutlinePixelSizeType: 0
+    - _OutlinePixelSizeType: 1
     - _OutlineTextureLOD: 5
     - _OutlineTextureType: 0
-    - _OutlineWidth: 1
+    - _OutlineWidth: 0.67
     - _Parallax: 0.02
     - _RampBands: 4
     - _RampBandsSmoothing: 0.1
