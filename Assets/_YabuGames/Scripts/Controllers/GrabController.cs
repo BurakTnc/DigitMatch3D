@@ -8,7 +8,9 @@ namespace _YabuGames.Scripts.Controllers
     public class GrabController : MonoBehaviour
     {
        [HideInInspector] public Vector3 startPosition;
-        
+
+       [SerializeField] public AudioClip grabSound;
+       
         private Vector3 _offset;
         private Camera _camera;
         private CollisionController _collisionController;
@@ -36,6 +38,7 @@ namespace _YabuGames.Scripts.Controllers
 
         private void OnMouseDown()
         {
+           AudioSource.PlayClipAtPoint(grabSound,_camera.transform.position);
             _collisionController.onMove = true;
             transform.DOComplete();
             transform.DORotate(new Vector3(0, -180, 0),.3f).SetEase(Ease.OutBack);

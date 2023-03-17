@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
@@ -17,6 +18,7 @@ namespace _YabuGames.Scripts.Managers
         [SerializeField] private List<int> valueList = new List<int>();
         [SerializeField] private Transform givenValuePosition;
         [SerializeField] private GameObject[] levels = new GameObject[3];
+        [SerializeField] private GameObject slashIcon;
         
         private float _xOffset=.4f;
         private GameObject _firstDigitObj, _secondDigitObj;
@@ -80,6 +82,7 @@ namespace _YabuGames.Scripts.Managers
             CoreGameSignals.Instance.OnSave += Save;
             CoreGameSignals.Instance.OnLevelWin += LevelWin;
             CoreGameSignals.Instance.OnGameStart += Initialize;
+            CoreGameSignals.Instance.OnMistake += Mistake;
         }
         
         private void UnSubscribe()
@@ -87,6 +90,7 @@ namespace _YabuGames.Scripts.Managers
             CoreGameSignals.Instance.OnSave -= Save;
             CoreGameSignals.Instance.OnLevelWin -= LevelWin;
             CoreGameSignals.Instance.OnGameStart -= Initialize;
+            CoreGameSignals.Instance.OnMistake -= Mistake;
         }
 
         #endregion
@@ -96,9 +100,19 @@ namespace _YabuGames.Scripts.Managers
             levelID = PlayerPrefs.GetInt("levelID", 0);
         }
 
+        private IEnumerator OpenSlash()
+        {
+            slashIcon.SetActive(true);
+           yield return new WaitForSeconds(1);
+           slashIcon.SetActive(false);
+        }
+        private void Mistake()
+        {
+            StartCoroutine(OpenSlash());
+        }
         private void LevelWin()
         {
-            if (levelID==3)
+            if (levelID==2)
             {
                 CoreGameSignals.Instance.OnGameWin?.Invoke();
                 return;

@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472a95fb9099c4ea294133ec9e77e63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  grabSound: {fileID: 8300000, guid: 831c963e0c3114801a356aad2c5aa6d8, type: 3}
 --- !u!114 &3202400080989864844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onMove: 0
+  isMultiplied: 0
 --- !u!114 &3202400080989864845
 MonoBehaviour:
   m_ObjectHideFlags: 0

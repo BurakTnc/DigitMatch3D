@@ -12,7 +12,9 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private Transform firstDigitPlace, secondDigitPlace;
         [SerializeField] private DigitHolderMode holderMode;
         [SerializeField] private Transform calculatePosition;
-
+        [SerializeField] private AudioClip holdSound;
+        [SerializeField] private AudioClip winSound, loseSound;
+        
         private Animator _animator;
         private GameObject _firstObj, _secondObj;
         private int _firstDigit, _secondDigit;
@@ -31,6 +33,7 @@ namespace _YabuGames.Scripts.Controllers
 
         public void PlaceTheDigit(GameObject digit)
         {
+            AudioSource.PlayClipAtPoint(holdSound,_cam.transform.position);
             if (_digitCount<1)
             {
                 var desiredPos = firstDigitPlace.position + Vector3.up;
@@ -71,6 +74,7 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Win()
         {
+            AudioSource.PlayClipAtPoint(winSound,_cam.transform.position);
             _digitCount = 0;
             CoreGameSignals.Instance.OnLevelWin?.Invoke();
         }
@@ -78,6 +82,7 @@ namespace _YabuGames.Scripts.Controllers
         private void Lose()
         {
             _cam.DOShakeRotation(.5f, Vector3.one, 10, 1, true);
+            AudioSource.PlayClipAtPoint(loseSound,_cam.transform.position);
             CoreGameSignals.Instance.OnMistake?.Invoke();
             var oldPosition1 = _firstObj.GetComponent<GrabController>().startPosition;
             _firstObj.transform.DOMove(oldPosition1, .5f).SetEase(Ease.OutBack);

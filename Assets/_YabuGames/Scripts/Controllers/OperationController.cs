@@ -13,7 +13,8 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private OperationMode operationMode;
         [SerializeField] private Transform extractPosition;
         [SerializeField] private Transform calculatePosition;
-
+        [SerializeField] private AudioClip exitSound, grabSound;
+        
         private Animation _animation;
         private Animator _animator;
         private const float XOffset = .4f;
@@ -56,6 +57,31 @@ namespace _YabuGames.Scripts.Controllers
             var firstDigit = (int)calculatedValue / 10;
             var secondDigit = calculatedValue % 10;
             var parent = new GameObject();
+            if (firstDigit==0)
+            {
+                var obj=Instantiate(Resources.Load<GameObject>($"Spawnables/{secondDigit}"), parent.transform);
+                parent.transform.rotation=Quaternion.Euler(-45,-180,0);
+                parent.transform.parent = LevelManager.Instance.GetPlatform();
+                parent.transform.position = calculatePosition.position;
+                parent.transform.DOScale(Vector3.one * 1.2f, .2f).SetLoops(2,LoopType.Yoyo)
+                    .OnComplete(() => ExitBox(parent, calculatedValue));
+                parent.name = calculatedValue.ToString();
+                obj.transform.SetLocalPositionAndRotation(new Vector3(XOffset, 0, 0), Quaternion.identity);
+                obj.GetComponent<GrabController>().enabled = false;
+                obj.GetComponent<CollisionController>().enabled = false;
+                obj.GetComponent<DigitController>().enabled = false;
+                var rrb = parent.AddComponent<Rigidbody>();
+                rrb.isKinematic = true;
+                var ggrabController = parent.AddComponent<GrabController>();
+                ggrabController.startPosition = extractPosition.position;
+                ggrabController.grabSound = grabSound;
+                var ccollisionController = parent.GetComponent<CollisionController>();
+                ccollisionController.isMultiplied = true;
+                var digitController = parent.AddComponent<DigitController>();
+                digitController.digitValue = calculatedValue;
+                return;
+                
+            }
             var firstDigitObj = Instantiate(Resources.Load<GameObject>($"Spawnables/{firstDigit}"), parent.transform);
             var secondDigitObj = Instantiate(Resources.Load<GameObject>($"Spawnables/{secondDigit}"), parent.transform);
             parent.transform.rotation=Quaternion.Euler(-45,-180,0);
@@ -79,6 +105,7 @@ namespace _YabuGames.Scripts.Controllers
 
             var grabController = parent.AddComponent<GrabController>();
             grabController.startPosition = extractPosition.position;
+            grabController.grabSound = grabSound;
             var collisionController = parent.GetComponent<CollisionController>();
             collisionController.isMultiplied = true;
 
@@ -91,6 +118,7 @@ namespace _YabuGames.Scripts.Controllers
                 .OnComplete(() => OpenCollider(obj,calculatedValue));
             var grabController = obj.GetComponent<GrabController>();
             grabController.startPosition = extractPosition.position;
+            AudioSource.PlayClipAtPoint(exitSound,Camera.main.transform.position);
 
         }
 
@@ -102,6 +130,7 @@ namespace _YabuGames.Scripts.Controllers
             boxCollider.size = new Vector3(1.5f, 1, 1);
             var digitController = obj.AddComponent<DigitController>();
             digitController.digitValue = calculatedValue;
+            
         }
         public void StartCalculate()
         {
