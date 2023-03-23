@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17966287, g: 0.22495623, b: 0.30649915, a: 1}
+  m_IndirectSpecularColor: {r: 0.17965123, g: 0.22494312, b: 0.3064915, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1115,13 +1115,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: 33dca27be9a13499a8e0fe6d7c23cfc6, type: 2}
-  - {fileID: 11400000, guid: 33dca27be9a13499a8e0fe6d7c23cfc6, type: 2}
-  - {fileID: 11400000, guid: 33dca27be9a13499a8e0fe6d7c23cfc6, type: 2}
+  - {fileID: 11400000, guid: 03f588428dcce4d168d681e3c9fad2cf, type: 2}
+  - {fileID: 11400000, guid: a064040ee25ee48a69fe62e11a5b5165, type: 2}
   levelID: 0
   givenValue: 0
-  valueList: 120000002000000031000000
   givenValuePosition: {fileID: 5685417153457667819}
   slashIcon: {fileID: 1270709656}
+  phaseLevel: 0
 --- !u!1001 &475076245
 PrefabInstance:
   m_ObjectHideFlags: 0
