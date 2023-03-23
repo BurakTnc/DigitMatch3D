@@ -87,6 +87,7 @@ namespace _YabuGames.Scripts.Managers
         }
         private void SetIcons()
         {
+            CoreGameSignals.Instance.OnSave?.Invoke();
             var id = LevelManager.Instance.levelID;
             retryButton.SetActive(false);
             switch (id)

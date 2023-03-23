@@ -19,8 +19,6 @@ namespace _YabuGames.Scripts.Managers
 
         public int levelID;
         [HideInInspector] public int givenValue;
-
-        [SerializeField] private List<int> valueList = new List<int>();
         [SerializeField] private Transform givenValuePosition;
         
         [SerializeField] private GameObject slashIcon;
