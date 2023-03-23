@@ -11,17 +11,17 @@ GameObject:
   - component: {fileID: 7333464181512539680}
   - component: {fileID: 447119815750171836}
   - component: {fileID: 9033981784286035401}
-  - component: {fileID: 7333464181512539682}
   - component: {fileID: 7333464181512539683}
   - component: {fileID: 7333464181512539692}
   - component: {fileID: 7333464181512539693}
+  - component: {fileID: 4257727105899313544}
   m_Layer: 0
   m_Name: Number_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7333464181512539680
 Transform:
   m_ObjectHideFlags: 0
@@ -29,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506457130197341261}
-  m_LocalRotation: {x: -0.000000037171215, y: 0.87039876, z: 0.49234754, w: -0.00000006571327}
+  m_LocalRotation: {x: -0, y: -0.87039876, z: -0.49234754, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200.00005, z: 200.00003}
+  m_LocalScale: {x: 200, y: 200.00006, z: 200.00003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -58.99, y: -180, z: 0}
 --- !u!33 &447119815750171836
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -87,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7333464181512539682
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506457130197341261}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 552887423116881197, guid: e68fc65e2188e439cb000c8cd2562f2a, type: 3}
 --- !u!114 &7333464181512539683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +128,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   digitValue: 7
+--- !u!65 &4257727105899313544
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506457130197341261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.007, y: 0.0044649015, z: 0.003}
+  m_Center: {x: -0.0016589422, y: 0.0021324502, z: -3.2307962e-10}
