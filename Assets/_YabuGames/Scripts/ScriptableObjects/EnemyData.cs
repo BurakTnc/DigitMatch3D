@@ -2,10 +2,11 @@ using UnityEngine;
 
 namespace _YabuGames.Scripts.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "EnemyData-", menuName = "YabuGames/New Enemy Data", order = 0)]
+    [CreateAssetMenu(fileName = "Phase Data", menuName = "YabuGames/Phase Data", order = 0)]
     public class EnemyData : ScriptableObject
     {
-        public float health = 100;
-        public float speed = 10;
+        public GameObject[] phases = new GameObject[3];
+        public int[] givenValue = new int[3];
+
     }
 }

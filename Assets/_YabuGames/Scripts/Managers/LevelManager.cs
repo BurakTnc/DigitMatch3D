@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _YabuGames.Scripts.Controllers;
+using _YabuGames.Scripts.ScriptableObjects;
 using _YabuGames.Scripts.Signals;
 using DG.Tweening;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,14 +14,19 @@ namespace _YabuGames.Scripts.Managers
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
+        
+        public  List<EnemyData> levels=new List<EnemyData>();
+
         public int levelID;
         [HideInInspector] public int givenValue;
 
         [SerializeField] private List<int> valueList = new List<int>();
         [SerializeField] private Transform givenValuePosition;
-        [SerializeField] private GameObject[] levels = new GameObject[3];
-        [SerializeField] private GameObject slashIcon;
         
+        [SerializeField] private GameObject slashIcon;
+
+        private List<GameObject> _currentPhases = new List<GameObject>();
+        private int _phaseLevel;
         private float _xOffset=.4f;
         private GameObject _firstDigitObj, _secondDigitObj;
         private void Awake()
@@ -42,12 +49,13 @@ namespace _YabuGames.Scripts.Managers
         private void Start()
         {
             ExtractTheGivenValue();
+            Initialize();
         }
 
         private void ExtractTheGivenValue()
         {
 
-            givenValue = valueList[levelID];
+            givenValue = levels[levelID].givenValue[_phaseLevel];
             var parent = new GameObject();
             parent.name = "Given Value = " + givenValue;
             var firstDigit = givenValue / 10;
@@ -62,7 +70,7 @@ namespace _YabuGames.Scripts.Managers
             _firstDigitObj.transform.SetLocalPositionAndRotation(new Vector3(-_xOffset, 0, 0), Quaternion.Euler(0, 180, 0));
             _secondDigitObj.transform.SetLocalPositionAndRotation(new Vector3(_xOffset, 0, 0), Quaternion.Euler(0, 180, 0));
             parent.transform.SetPositionAndRotation(givenValuePosition.position, givenValuePosition.rotation);
-
+            
         }
 
         private void OnEnable()
@@ -112,39 +120,36 @@ namespace _YabuGames.Scripts.Managers
         }
         private void LevelWin()
         {
-            if (levelID==2)
+            if (_phaseLevel==2)
             {
+                levelID++;
+                _phaseLevel = 0;
                 CoreGameSignals.Instance.OnGameWin?.Invoke();
                 return;
             }
-            levelID++;
+            _phaseLevel++;
             Initialize();
         }
 
         private void Initialize()
         {
-            // foreach (var t in levels)
-            // {
-            //     t.SetActive(false);
-            // }
-
-            var newPlatform = levels[levelID];
+            var newPlatform = Instantiate(levels[levelID].phases[_phaseLevel]);
+            _currentPhases.Add(newPlatform);
             newPlatform.SetActive(true);
             newPlatform.transform.position = new Vector3(17, -7.69f, 8.23f);
             newPlatform.transform.DOMoveX(3.70f, 1).SetEase(Ease.OutBack).SetDelay(1.5f);
 
-            var oldPlatform = levels[levelID - 1];
+            if(_phaseLevel<1) 
+                return;
+            var oldPlatform = _currentPhases[_phaseLevel-1];
             oldPlatform.transform.DOMoveX(-14.70f, 1).SetEase(Ease.InBack).SetDelay(.5f).SetRelative(true);
-            
-            if (_firstDigitObj)
-            {
-                var temp1 = _firstDigitObj;
-                var temp2 = _secondDigitObj;
-            
-                Destroy(temp1);
-                Destroy(temp2);
-            }
-            
+
+            if (!_firstDigitObj) 
+                return;
+            var temp1 = _firstDigitObj;
+            var temp2 = _secondDigitObj;
+            Destroy(temp1);
+            Destroy(temp2);
             ExtractTheGivenValue();
         }
 
@@ -153,9 +158,17 @@ namespace _YabuGames.Scripts.Managers
             PlayerPrefs.SetInt("levelID",levelID);
         }
 
+        public void ResetPhase()
+        {
+            var currentPhase = _currentPhases[_phaseLevel];
+            _currentPhases.Remove(currentPhase);
+            Destroy(currentPhase);
+            Initialize();
+        }
+
         public Transform GetPlatform()
         {
-            return levels[levelID].transform;
+            return _currentPhases[_phaseLevel].transform;
         }
     }
 }

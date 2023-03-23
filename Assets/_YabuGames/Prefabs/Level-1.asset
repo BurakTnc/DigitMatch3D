@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df62227ba2345469e79e16f9bb79865, type: 3}
+  m_Name: Level-1
+  m_EditorClassIdentifier: 
+  phases:
+  - {fileID: 580496692849003224, guid: 9e85ce4e0655f45f8b0ef82843f9f570, type: 3}
+  - {fileID: 4170605293963079953, guid: afc3b0c2b26a449daac321e4710dc539, type: 3}
+  - {fileID: 8452897763114235250, guid: 8523f9edf889b440c9c5451e9407ae3b, type: 3}
+  givenValue: 120000002000000031000000

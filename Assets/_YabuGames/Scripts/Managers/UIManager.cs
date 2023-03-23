@@ -158,6 +158,11 @@ namespace _YabuGames.Scripts.Managers
             HapticManager.Instance.PlaySelectionHaptic();
         }
 
+        public void ResetButton()
+        {
+            LevelManager.Instance.ResetPhase();
+        }
+
         public void RetryButton()
         {
             CoreGameSignals.Instance.OnLevelLoad?.Invoke();
