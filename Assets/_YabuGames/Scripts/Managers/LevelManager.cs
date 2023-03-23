@@ -126,10 +126,15 @@ namespace _YabuGames.Scripts.Managers
             {
                 levelID++;
                 phaseLevel = 0;
+                if (levelID>=levels.Count)
+                {
+                    levelID = 0;
+                }
                 CoreGameSignals.Instance.OnGameWin?.Invoke();
                 CoreGameSignals.Instance.OnSave?.Invoke();
                 return;
             }
+            HapticManager.Instance.PlaySuccessHaptic();
             phaseLevel++;
             _oldPlatform = _currentParent.gameObject;
             CoreGameSignals.Instance.OnSave?.Invoke();
@@ -143,13 +148,11 @@ namespace _YabuGames.Scripts.Managers
             _currentPhases.Add(newPlatform);
             newPlatform.SetActive(true);
             newPlatform.transform.position = new Vector3(17, -7.69f, 8.23f);
-            newPlatform.transform.DOMoveX(3.70f, 1).SetEase(Ease.OutBack).SetDelay(1.5f);
-
-            Debug.Log(_currentPhases.Count);
+            newPlatform.transform.DOMoveX(3.70f, .7f).SetEase(Ease.OutBack).SetDelay(1.5f);
+            
             if(!_oldPlatform) 
                 return;
-            //var oldPlatform = _currentPhases[phaseLevel-1];
-            _oldPlatform.transform.DOMoveX(-14.70f, 1).SetEase(Ease.InBack).SetDelay(.5f).SetRelative(true);
+            _oldPlatform.transform.DOMoveX(-14.70f, .7f).SetEase(Ease.InBack).SetDelay(.5f).SetRelative(true);
 
             if (!_firstDigitObj) 
                 return;
@@ -168,16 +171,8 @@ namespace _YabuGames.Scripts.Managers
 
         public void ResetPhase()
         {
-            // var currentPhase = _currentPhases[_phaseLevel];
-            // _currentPhases.Remove(currentPhase);
-            // Destroy(currentPhase);
-            // Initialize();
+     
             SceneManager.LoadScene(0);
-        }
-
-        public void NextLevel()
-        {
-            //SceneManager.LoadScene(0);
         }
 
         public Transform GetPlatform()

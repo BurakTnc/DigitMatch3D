@@ -33,6 +33,7 @@ namespace _YabuGames.Scripts.Controllers
 
         public void PlaceTheDigit(GameObject digit)
         {
+            HapticManager.Instance.PlayWarningHaptic();
             AudioSource.PlayClipAtPoint(holdSound,_cam.transform.position);
             if (_digitCount<1)
             {

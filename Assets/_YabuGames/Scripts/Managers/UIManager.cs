@@ -84,6 +84,7 @@ namespace _YabuGames.Scripts.Managers
 
         private void Mistake()
         {
+            HapticManager.Instance.PlayFailureHaptic();
             retryButton.SetActive(true);
         }
         private void SetIcons()
