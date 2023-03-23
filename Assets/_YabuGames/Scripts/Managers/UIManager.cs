@@ -3,6 +3,7 @@ using _YabuGames.Scripts.Signals;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
@@ -88,7 +89,7 @@ namespace _YabuGames.Scripts.Managers
         private void SetIcons()
         {
             CoreGameSignals.Instance.OnSave?.Invoke();
-            var id = LevelManager.Instance.levelID;
+            var id = LevelManager.Instance.phaseLevel;
             retryButton.SetActive(false);
             switch (id)
             {
@@ -155,7 +156,7 @@ namespace _YabuGames.Scripts.Managers
 
         public void NextButton()
         {
-            CoreGameSignals.Instance.OnLevelLoad?.Invoke();
+            SceneManager.LoadScene(0);
             HapticManager.Instance.PlaySelectionHaptic();
         }
 

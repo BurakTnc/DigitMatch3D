@@ -134,7 +134,6 @@ namespace _YabuGames.Scripts.Controllers
         }
         public void StartCalculate()
         {
-            //_animator.enabled = false;
             Execute(Calculate());
         }
     }
